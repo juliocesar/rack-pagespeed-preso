@@ -1,0 +1,7 @@
+{
+  "slides":       ["welcome.md"],
+  "title":        "Your presentation",
+  "plugins":      ["resize", "iphone"],
+  "transitions":  "fade",
+  "theme":        "retro"
+}
