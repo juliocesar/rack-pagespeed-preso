@@ -1,7 +1,21 @@
 {
-  "slides":       ["welcome.md"],
-  "title":        "Your presentation",
-  "plugins":      ["resize", "iphone"],
-  "transitions":  "fade",
-  "theme":        "retro"
+  "slides": [
+    "welcome.md",
+    "modpagespeed.md",
+    "philosophical-break.md",
+    "versus1.md",
+    "versus2.md",
+    "versus3.md",
+    "filters.md",
+    "store.md",
+    "caveats.md",
+    "thanks.md"
+  ],
+  "title": "rack-pagespeed",
+  "plugins": [
+    "resize",
+    "iphone"
+  ],
+  "transitions": "fade",
+  "theme": "retro"
 }

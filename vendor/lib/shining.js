@@ -177,19 +177,10 @@
         for (slide in slides) {
           slides[slide].markup = compileSlide(slide, slides[slide].markup)
         };
+        trigger('slidesloaded');
         if ($.isFunction(callback)) callback();
       }
     );
-  }
-
-  function preloadSlides() {
-    $.getJSON(
-      'slides.json',
-      function(slides) {
-        console.log('GOT: ' + slides)
-      }
-    );
-    // $(Shining.config.slides).each(function() { loadSlide(this); })
   }
 
   function playSlide(name) {
@@ -269,11 +260,6 @@
     if (SyntaxHighlighter) SyntaxHighlighter.highlight({gutter: false, toolbar: false});
     if ($('#stage aside').length) setTimeout(function() { note($('#stage aside').html(), 5000) }, 500);
   });
-
-  when('slideloaded', function(event, name) {
-    help('Loaded ' + Shining.slides.totalLoaded() + '/' + Shining.slides._slides.length, 5000);
-    if (Shining.slides.totalLoaded() == Shining.config.slides.length) trigger('slidesloaded');
-  })
 
   when('slidesloaded', function() {
     help('← (previous slide), → or SPACE BAR (next slide)', 3000);

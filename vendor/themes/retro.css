@@ -16,12 +16,9 @@ body {
 	-webkit-background-size: 200px 200px;
 	-moz-background-size: 200px 200px;
 	background-size: 200px 200px;
-
-	-moz-box-shadow: 1px 1px 8px gray;
-	-webkit-box-shadow: 1px 1px 8px gray;
-	box-shadow: 1px 1px 8px gray;  
 }
 
+#help { font-family: Arial !important}
 
 h1 {
   font-size: 5em;
@@ -33,13 +30,16 @@ h1 {
                 #340f07 -1px -2px 0px, #340f07 -2px -3px 0px;
 }
 
-p {
+p, ul {
   font-size: 2em;
   color: #fff;
   text-shadow:  #340f07 -6px 6px 0px, #340f07 -5px 5px 0px, #340f07 -4px 4px 0px, #340f07 -3px 3px 3px,
                 #340f07 -2px 2px 0px, #340f07 -1px 1px 0px, #340f07 1px 0px 0px, #340f07 0px -1px 0px,
                 #340f07 -1px -2px 0px, #340f07 -2px -3px 0px;
 }
+pre   { line-height: 1.2em }
+code  { display: block; padding: 0.5em; background: #340f07; font-size: 100%; color: #fff }
+
 a { cursor: pointer; display: inline-block; padding: 0 0.2em; text-decoration: none; background: #f9fda2; color: #340f07; border-bottom: 1px solid #340f07 ; text-shadow: none }
 #note { 
   display: none;
@@ -47,3 +47,4 @@ a { cursor: pointer; display: inline-block; padding: 0 0.2em; text-decoration: n
 	background: #f9fda2;
 }
 #note:after {	content: "\00a0";	display: block; position: absolute;	bottom: -30px; right: 30%;	width: 0;	height: 0; border-width: 0 20px 30px 0px;	border-style: solid; border-color: transparent #f9fda2 }
+ul { font-size: 1.2em }
