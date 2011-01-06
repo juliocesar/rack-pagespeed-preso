@@ -72,12 +72,12 @@ if (iPhone || iPad) {
 
   Shining.when('slidesloaded', function(i) {
     setTimeout(function() {
-      $('#stage').empty();
+      $('body').empty();
       $(Shining.config.slides).each(function(i) {
         var slide = Shining.slides._loaded[this];
         $('<div class="slide">' + slide.markup + '</div>')
           .css({left: i * window.innerWidth })
-          .appendTo($('#stage'));
+          .appendTo($('body'));
       });
       $('body').bind('touchstart', function() {
         $(this).data('pan', {

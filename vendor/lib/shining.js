@@ -43,7 +43,7 @@
     when:     when,
     trigger:  trigger,
     pluginProcesses: {},
-    centerStage: centerStage,
+    centerSlide: centerSlide,
 
     // slide scripts
     scripts: {
@@ -93,16 +93,12 @@
   // Transitions
   var Transitions = {
     'fade': {
-      enter: function() { $('#stage').fadeIn(200); },
-      leave: function() { $('#stage').fadeOut(200); }
-    },
-    'slide': {
-      enter: function() { $('#stage').css({ marginLeft: null, marginRight: '-200px' }).animate({ opacity: 1, marginRight: '0' }, 200); },
-      leave: function() { $('#stage').animate({ opacity: 0, marginLeft: '-200' }, 200); }
+      enter: function() { $('div.slide').fadeIn(200); },
+      leave: function() { $('div.slide').fadeOut(200); }
     },
     'none': {
-      enter: $.noop,
-      leave: $.noop
+      enter: function() { $('div.slide').show(); },
+      leave: function() { $('div.slide').hide(); }
     }
   }
 
@@ -184,18 +180,18 @@
   }
 
   function playSlide(name) {
-    $('#stage')
+    $('body')
       .queue(function() { Transitions[Shining.config.transitions].leave(); $(this).dequeue(); })
       .queue(function() {
         Shining.scripts.reap();
         var slide = Shining.slides._loaded[name];
         Shining.slides.current(name);
-        $('#stage').html(slide.markup);
-        setTimeout(centerStage, 500);
+        $('body').html('<div class="slide">' + slide.markup + '</div>');
+        setTimeout(centerSlide, 500);
         trigger('slideplay', [name]);
         $(this).dequeue();
       })
-      .queue(function() { Transitions[Shining.config.transitions].enter(); $(this).dequeue(); centerStage(); });
+      .queue(function() { Transitions[Shining.config.transitions].enter(); $(this).dequeue(); centerSlide(); });
   }
 
   function loadPlugins() {
@@ -220,18 +216,18 @@
     });
   }
 
-  function centerStage() {
-    var top = ($(window).height() - $('#stage').outerHeight()) / 2;
+  function centerSlide() {
+    var top = ($(window).height() - $('div.slide:visible').outerHeight()) / 2;
     if (top < 0) top = 0;
-    $('#stage').css({ top: top });
+    $('div.slide').css({ top: top });
   }
 
   function hasPendingStep() {
-    return !!$('#stage .step:not(:visible)').length;
+    return !!$('div.slide .step:not(:visible)').length;
   }
 
   function runPendingStep() {
-    $('#stage .step:not(:visible):first').show();
+    $('div.slide .step:not(:visible):first').show();
   }
 
   // Now configure everything!
@@ -258,7 +254,7 @@
     loadSlideStyle(name);
     Shining.scripts.runSlide(name);
     if (SyntaxHighlighter) SyntaxHighlighter.highlight({gutter: false, toolbar: false});
-    if ($('#stage aside').length) setTimeout(function() { note($('#stage aside').html(), 5000) }, 500);
+    if ($('body aside').length) setTimeout(function() { note($('body aside').html(), 5000) }, 500);
   });
 
   when('slidesloaded', function() {
@@ -266,7 +262,7 @@
   })
 
   $(window)
-    .resize(function() { centerStage(); })
+    .resize(function() { centerSlide(); })
     .bind('hashchange', function() {
       var slide = document.location.hash.replace('#', '');
       if (slide) Shining.playSlide(slide);

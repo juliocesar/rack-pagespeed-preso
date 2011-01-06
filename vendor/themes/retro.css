@@ -1,5 +1,6 @@
-#stage        { display: block !important; margin: 0; padding: 0 2em; color: #000000 }
 body { 
+  text-align: left;
+  padding: 2em;
   font-family: "myriad-pro-condensed-1";
 	background-color: #c57830;
 	background-image: -webkit-gradient(linear, 0 100%, 100% 0,
@@ -18,8 +19,6 @@ body {
 	background-size: 200px 200px;
 }
 
-#help { font-family: Arial !important}
-
 h1 {
   font-size: 5em;
   font-family: "atrament-web-1";
@@ -37,8 +36,8 @@ p, ul {
                 #340f07 -2px 2px 0px, #340f07 -1px 1px 0px, #340f07 1px 0px 0px, #340f07 0px -1px 0px,
                 #340f07 -1px -2px 0px, #340f07 -2px -3px 0px;
 }
-pre   { line-height: 1.2em }
-code  { display: block; padding: 0.5em; background: #340f07; font-size: 100%; color: #fff }
+pre   { line-height: 1.3em }
+code  { display: block; padding: 0.5em; background: #340f07; font-size: 120%; color: #fff }
 
 a { cursor: pointer; display: inline-block; padding: 0 0.2em; text-decoration: none; background: #f9fda2; color: #340f07; border-bottom: 1px solid #340f07 ; text-shadow: none }
 #note { 
