@@ -1,4 +1,4 @@
-// iphone.js: iPhone friendliness. Free of charge.
+// iphone.js: iPhone and iPad friendliness. Free of charge.
 // The iPhone touch code is heavily borrowed from libraries around the web.
 // If you recognize anything as yours and you'd like credit for it, get in touch.
 var iPhone = !!navigator.userAgent.match(/iPhone/), iPad = !!navigator.userAgent.match(/iPad/);
@@ -19,7 +19,7 @@ if (iPhone || iPad) {
       slide = Shining.slides._loaded[name];
     $('body').transformTransition({translate: {x: -offset }});
     Shining.slides.current(name);
-    var aside = $('#stage .slide:eq(' + index + ') aside');
+    var aside = $('body .slide:eq(' + index + ') aside');
     if (aside.length) setTimeout(
       function() {
         Shining.note(aside.html(), 5000);
@@ -27,12 +27,6 @@ if (iPhone || iPad) {
       },
       500
     );
-  };
-
-  Shining.centerStage = function(animate) {
-    $('.slide').each(function() {
-      centerSlide($(this));
-    });
   };
 
   Shining.slides.nextSlide = function() {
@@ -45,14 +39,14 @@ if (iPhone || iPad) {
 
   function fitToView() {
     $('div.slide').each(function(i) {
-      $(this).css({left: i * window.innerWidth, top: window.innerHeight });
+      $(this).css({left: i * window.innerWidth });
     });
   }
 
   function centerSlide(slide) {
-    var top = (window.innerHeight - slide.outerHeight()) / 3;
-    if (top < 0) top = 0;
-    slide.css({ top: top });
+    // var top = (window.innerHeight - slide.outerHeight()) / 3;
+    // if (top < 0) top = 0;
+    // slide.css({ top: top });
   }
 
   function currentSlide() {
@@ -76,9 +70,11 @@ if (iPhone || iPad) {
       $(Shining.config.slides).each(function(i) {
         var slide = Shining.slides._loaded[this];
         $('<div class="slide">' + slide.markup + '</div>')
-          .css({left: i * window.innerWidth })
+          .css({left: i * $('div.slide').outerWidth() })
           .appendTo($('body'));
       });
+      // alert($('div.slide').outerWidth());
+      fitToView();
       $('body').bind('touchstart', function() {
         $(this).data('pan', {
           startX: event.targetTouches[0].screenX,
@@ -111,4 +107,3 @@ if (iPhone || iPad) {
     }, 1000);
   });
 }
-

@@ -216,7 +216,7 @@
     });
   }
 
-  function centerSlide() {
+  function centerSlide() {    
     var top = ($(window).height() - $('div.slide:visible').outerHeight()) / 2;
     if (top < 0) top = 0;
     $('div.slide').css({ top: top });
