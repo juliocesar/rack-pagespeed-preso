@@ -7,7 +7,7 @@ use Rack::Static,
   :urls => %w(/vendor/css /vendor/lib /config.json /vendor/themes /vendor/images)
   
 use Rack::PageSpeed, :public => File.dirname(__FILE__) do
-  store :disk
+  store :memcached
   combine_javascripts
   combine_css
 end
